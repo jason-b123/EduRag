@@ -1,5 +1,7 @@
 # EduRAG — Academic Document Question Answering System
 
+**Deploy: https://edurag-jpxg8xe7lkwubw577tytex.streamlit.app/**
+
 EduRAG is a Retrieval-Augmented Generation (RAG) application that allows users to upload academic PDF documents and ask questions based on their contents.
 
 The system retrieves relevant information from uploaded documents and uses Google Gemini to generate contextual answers with source references.
