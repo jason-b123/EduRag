@@ -1,5 +1,6 @@
 import os
 import shutil
+import tempfile
 
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
@@ -11,10 +12,6 @@ CHROMA_PATH = "chroma_db"
 
 
 def create_vector_store(documents):
-    # Bersihkan vector store sebelumnya
-    if os.path.exists(CHROMA_PATH):
-        shutil.rmtree(CHROMA_PATH)
-
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
         chunk_overlap=100
@@ -27,6 +24,11 @@ def create_vector_store(documents):
 
     embeddings = GoogleGenerativeAIEmbeddings(
         model="models/gemini-embedding-001"
+    )
+
+    # Buat direktori database baru yang writable
+    chroma_path = tempfile.mkdtemp(
+        prefix="edurag_chroma_"
     )
 
     vector_store = Chroma.from_documents(
